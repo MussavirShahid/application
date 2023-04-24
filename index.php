@@ -19,14 +19,13 @@ $f3 = Base::instance();
 // Define a default route
 $F3->route('GET /', function (){
    echo '<h1>Hello, World!</h1>';
-
-//$view = new Template();
-//echo $view->render('Views/home.html');
-});
 */
-$f3->route('GET /', function (){
+$view = new Template();
+echo $view->render('views/home.html');
+
+/*$f3->route('GET /', function (){
     echo "Hello, World";
 });
-
+*/
 // Run Fat Free Framework
 $f3->run();
