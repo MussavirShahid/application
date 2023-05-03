@@ -58,5 +58,10 @@
   background-color: maroon;
   color: white;
 }
+/* Button styles*/
+.apply-btn{
+    background-color: rgba(74, 232, 12, 0.89);
+    color: white;
+}
 
 
