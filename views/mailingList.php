@@ -1,38 +1,21 @@
-<?php
-session_start();
-
-// Initialize variables
-$software_jobs = array();
-$industry_verticals = array();
-
-// Check if the form has been submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get selected checkboxes for software development jobs
-    if (!empty($_POST["software_jobs"])) {
-        $software_jobs = $_POST["software_jobs"];
-    }
-
-    // Get selected checkboxes for industry verticals
-    if (!empty($_POST["industry_verticals"])) {
-        $industry_verticals = $_POST["industry_verticals"];
-    }
-
-    // Save selections to session variables
-    $_SESSION["software_jobs"] = $software_jobs;
-    $_SESSION["industry_verticals"] = $industry_verticals;
-
-    // Redirect to summary page
-    header("Location: summary.php");
-    exit();
-}
-?>
-
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>Experience</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
 <!-- Mailing list page HTML -->
 <div class="container">
     <h1>Mailing Lists</h1>
     <p>Please select the mailing lists you would like to subscribe to:</p>
 
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <form method="post" action="#">
         <div class="form-group">
             <label>Software Development Jobs</label><br>
             <div class="form-check form-check-inline">
@@ -100,4 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label class="form-check-label">Cybersecurity</label>
             </div>
         </div>
+        <button type="submit" name="submit" class="btn btn-primary float-right">Next</button>
     </form>
+</div>
+</body>
+</html>

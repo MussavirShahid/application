@@ -1,13 +1,3 @@
-<?php
-session_start();
-if(isset($_POST['submit'])){
-    $_SESSION['bio'] = $_POST['bio'];
-    $_SESSION['github'] = $_POST['github'];
-    $_SESSION['years'] = $_POST['years'];
-    $_SESSION['relocate'] = $_POST['relocate'];
-    header('Location: mailingList.php');
-}
-?>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -22,7 +12,7 @@ if(isset($_POST['submit'])){
 <body>
 <div class="container">
     <h1>Experience</h1>
-    <form method="post">
+    <form method="post" action="#">
         <div class="form-group">
             <label for="bio">Biography:</label>
             <textarea class="form-control" rows="5" id="bio" name="bio"></textarea>
