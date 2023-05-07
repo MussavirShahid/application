@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Personal Info</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<header>
+    <div class="container-fluid header">
+        <div class="row">
+            <div class="col-8 text-lg-left">
+                <h1><b>Software Development Internship</b></h1><br>
+                <h3>Seattle, Washington, Paid 12 Weeks</h3>
+            </div>
+        </div>
+    </div>
+</header>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+<!-- HTML form for Personal Information page -->
+    <h2>Personal Information</h2>
+    <form action="#" method="POST">
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <div class="form-row">
+            <div class="form-group col-md-6">
+            <label for="first_name">First Name:</label><br>
+            <input type="text" name="first_name" id="first_name" required>
+            </div>
+
+            <div class="form-group col-md-6">
+            <label for="last_name">Last Name:</label><br>
+            <input type="text" name="last_name" id="last_name" required>
+            </div>
+            </div>
+            <div  class="form-row">
+            <div class="form-group col-md-12">
+            <label for="email">Email:</label><br>
+            <input type="email" name="email" id="email" required>
+            </div>
+            </div>
+            <div class="form-row">
+            <div class="form-group col-md-6">
+            <label for="state">State:</label><br>
+            <select name="state" id="state" class="form-control">
+                <option value="WASHINGTON" selected>Washington</option>
+                <option value="ALABAMA">Alabama</option>
+                <option value="ALASKA">Alaska</option>
+                <option value="TEXAS">Texas</option>
+                <option value="CALIFORNIA">California</option>
+                <option value="IDAHO">Idaho</option>
+                <option value="WISCONSIN">Wisconsin</option>
+                <!-- Add more options for other states -->
+            </select>
+            </div>
+
+
+            <div class="form-group col-md-6">
+            <label for="phone">Phone:</label><br>
+            <input type="tel" name="phone" id="phone" required>
+            </div>
+            </div>
+
+        </div>
+        <div class="form-group col-md-4">
+            <div class="note border-secondary bg-secondary rounded">
+                <p><b>Note:</b> All information is protected by our <b>privacy policy.</b> Profile information can only
+                    be viewed by others with permission.</p>
+            </div>
+            <div class="form-group text-right">
+                <div class="PIbtn">
+                    <button type="submit" class="btn btn-primary btn-block float-left">Next</button>
+                </div>
+                </div>
+        </div>
+    </div>
+    </form>
+    </div>
+</div>
+</div>
+</body>
+</html>
