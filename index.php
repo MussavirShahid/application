@@ -11,6 +11,7 @@ error_reporting(E_ALL);
 
 // Require the autoload file
 require_once ('vendor/autoload.php');
+require_once ('model/validation.php');
 
 // Create an F3 (Fat Free Framework) object
 $f3 = Base::instance();
@@ -55,13 +56,36 @@ $f3->route('GET|POST /personalinfo', function($f3) {
         $phone = $_POST['phone'];
 
         // Validate the data
+        if (validFirst($firstname)){
+            $f3->set('SESSION.firstname', $firstname);
+        }
+        else{
+            $f3->set('errors["firstname"]', 'Invalid firstname');
+        }
+        if (validLast($lastname)){
+            $f3->set('SESSION.lastname', $lastname);
+        }
+        else{
+            $f3->set('errors["lastname"]', 'Invalid lastname');
+        }
+        if (validPhone($phone)){
+            $f3->set('SESSION.phone', $phone);
+        }
+        else{
+            $f3->set('errors["phone"]', 'Invalid Phone Number');
+        }
+        if (validEmail($email)){
+            $f3->set('SESSION.email', $email);
+        }
+        else{
+            $f3->set('errors["email"]', 'Invalid Email');
+        }
 
         // Store the data in the session array
-        $f3->set('SESSION.firstname', $firstname);
-        $f3->set('SESSION.lastname', $lastname);
-        $f3->set('SESSION.email', $email);
+        /*$f3->set('SESSION.firstname', $firstname);*/
+        /*$f3->set('SESSION.email', $email);*/
         $f3->set('SESSION.state', $state);
-        $f3->set('SESSION.phone', $phone);
+        /*$f3->set('SESSION.phone', $phone);*/
 
         // Redirect to experience route
         $f3->reroute('experience');
@@ -90,12 +114,24 @@ $f3->route('GET|POST /experience', function($f3) {
 
 
         //Validate the data
+        if (validGithub($github)){
+            $f3->set('SESSION.github', $github);
+        }
+        else{
+            $f3->set('errors["github"]', 'Invalid URL');
+        }
+        if (validExperience($years)){
+            $f3->set('SESSION.years', $years);
+        }
+        else{
+            $f3->set('errors["years"]', 'Invalid Experience');
+        }
 
         //Store the data in the session array
 
         $f3->set('SESSION.bio', $bio);
-        $f3->set('SESSION.github', $github);
-        $f3->set('SESSION.years', $years);
+        /*$f3->set('SESSION.github', $github);*/
+        /*$f3->set('SESSION.years', $years);*/
         $f3->set('SESSION.relocate', $relocate);
 
         //Redirect to the summary route
@@ -125,11 +161,23 @@ $f3->route('GET|POST /mailing-list', function($f3) {
 
 
         //Validate the data
+        if (validSelectionsJobs($software_jobs)){
+            $f3->set('SESSION.software_jobs', $software_jobs);
+        }
+        else{
+            $f3->set('errors["software_jobs"]', 'Invalid Software Jobs selected');
+        }
+        if (validSelectionsVerticals($industry_verticals)){
+            $f3->set('SESSION.industry_verticals', $industry_verticals);
+        }
+        else{
+            $f3->set('errors["industry_verticals"]', 'Invalid industry vertical selected');
+        }
 
         //Store the data in the session array
 
-        $f3->set('SESSION.software_jobs', $software_jobs);
-        $f3->set('SESSION.industry_verticals', $industry_verticals);
+       /* $f3->set('SESSION.software_jobs', $software_jobs);
+        $f3->set('SESSION.industry_verticals', $industry_verticals);*/
 
         //Redirect to the summary route
         $f3->reroute('summary');
