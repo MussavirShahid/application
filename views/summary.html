@@ -23,29 +23,29 @@
     <div class="row">
         <div class="col-md-6">
             <div class="box">
-                <p>Name: Sarah Smith</p>
+                <p><b>Name:</b>{{ @SESSION.firstname }} {{ @SESSION.lastname }}</p>
             </div>
             <div class="box">
-                <p>Email: my_email@gmail.com</p>
+                <p><b>Email:</b> {{ @SESSION.email }}</p>
             </div>
             <div class="box">
-                <p>State: Washington</p>
+                <p><b>State:</b> {{ @SESSION.state }}</p>
             </div>
             <div class="box">
-                <p>Phone: 222-333-4444</p>
+                <p><b>Phone:</b> {{ @SESSION.phone }}</p>
             </div>
 
             <div class="box">
-                <p>Github Link: github.com/my_github</p>
+                <p><b>Github Link:</b> {{ @SESSION.github}}</p>
             </div>
             <div class="box">
-                <p>Experience: 0-2 years</p>
+                <p><b>Experience:</b> {{ @SESSION.years}}</p>
             </div>
             <div class="box">
-                <p>Willing to relocate: Yes</p>
+                <p><b>Willing to relocate:</b> {{ @SESSION.relocate }}</p>
             </div>
             <div class="box">
-                <p>Mailing Lists: JavaScript, PHP, Cybersecurity</p>
+                <p><b>Mailing Lists:</b> {{ @SESSION.software_jobs }} {{ @SESSION.industry_verticals}}</p>
             </div>
         </div>
 
