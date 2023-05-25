@@ -30,17 +30,26 @@
             <div class="form-group col-md-6">
             <label for="first_name">First Name:</label><br>
             <input type="text" name="first_name" id="first_name" required>
+                <check if="{{isset(@errors['firstname'])}}">
+                    <span class="err">{{ @errors['firstname'] }}</span>
+                </check>
             </div>
 
             <div class="form-group col-md-6">
             <label for="last_name">Last Name:</label><br>
             <input type="text" name="last_name" id="last_name" required>
+                <check if="{{isset(@errors['lastname'])}}">
+                    <span class="err">{{ @errors['lastname'] }}</span>
+                </check>
             </div>
             </div>
             <div  class="form-row">
             <div class="form-group col-md-12">
             <label for="email">Email:</label><br>
             <input type="email" name="email" id="email" required>
+                <check if="{{isset(@errors['email'])}}">
+                    <span class="err">{{ @errors['email'] }}</span>
+                </check>
             </div>
             </div>
             <div class="form-row">
@@ -62,6 +71,9 @@
             <div class="form-group col-md-6">
             <label for="phone">Phone:</label><br>
             <input type="tel" name="phone" id="phone" required>
+                <check if="{{isset(@errors['phone'])}}">
+                    <span class="err">{{ @errors['phone'] }}</span>
+                </check>
             </div>
             </div>
 

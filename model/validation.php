@@ -2,12 +2,12 @@
 function validFirst($firstname)
 {
 // Check if the string contains only alphabetic characters
-return !empty($firtname) && ctype_alpha($firstname);
+return ctype_alpha($firstname);
 }
 function validLast($lastname)
 {
 // Check if the string contains only alphabetic characters
-    return !empty($lastname) && ctype_alpha($lastname);
+    return ctype_alpha($lastname);
 }
 
 function validGithub($github)

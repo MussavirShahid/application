@@ -32,10 +32,16 @@
         <div class="form-group">
             <label for="github"><b>Github Link:</b></label>
             <input type="text" class="form-control" id="github" name="github">
+            <check if="{{isset(@errors['github'])}}">
+                <span class="err">{{ @errors['github'] }}</span>
+            </check>
         </div>
         <div class="form-group">
             <label for="years"><b>Years of Experience:</b></label>
             <input type="number" class="form-control" id="years" name="years">
+            <check if="{{isset(@errors['years'])}}">
+                <span class="err">{{ @errors['years'] }}</span>
+            </check>
         </div>
         <div class="form-group">
             <label><b>Willing to relocate?</b></label>
@@ -44,6 +50,9 @@
                 <label class="form-check-label" for="relocate-yes">
                     Yes
                 </label>
+                <check if="{{isset(@errors['relocate'])}}">
+                    <span class="err">{{ @errors['relocate'] }}</span>
+                </check>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="relocate" id="relocate-no" value="no">

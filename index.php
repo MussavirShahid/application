@@ -55,6 +55,7 @@ $f3->route('GET|POST /personalinfo', function($f3) {
         $state = $_POST['state'];
         $phone = $_POST['phone'];
 
+
         // Validate the data
         if (validFirst($firstname)){
             $f3->set('SESSION.firstname', $firstname);
@@ -62,6 +63,7 @@ $f3->route('GET|POST /personalinfo', function($f3) {
         else{
             $f3->set('errors["firstname"]', 'Invalid firstname');
         }
+
         if (validLast($lastname)){
             $f3->set('SESSION.lastname', $lastname);
         }
@@ -83,13 +85,17 @@ $f3->route('GET|POST /personalinfo', function($f3) {
 
         // Store the data in the session array
         /*$f3->set('SESSION.firstname', $firstname);*/
+        /*$f3->set('SESSION.lastname', $lastname);*/
         /*$f3->set('SESSION.email', $email);*/
         $f3->set('SESSION.state', $state);
-        /*$f3->set('SESSION.phone', $phone);*/
+       /* $f3->set('SESSION.phone', $phone);*/
 
         // Redirect to experience route
-        $f3->reroute('experience');
+        if(empty ($f3->get('errors'))) {
+            $f3->reroute('experience');
+        }
     }
+
     // Display a view page
     $view = new Template();
     echo $view->render('views/personalInfo.html');
@@ -135,7 +141,9 @@ $f3->route('GET|POST /experience', function($f3) {
         $f3->set('SESSION.relocate', $relocate);
 
         //Redirect to the summary route
-        $f3->reroute('mailing-list');
+        if(empty ($f3->get('errors'))) {
+            $f3->reroute('mailing-list');
+        }
     }
 
     // Display a view page
@@ -180,7 +188,9 @@ $f3->route('GET|POST /mailing-list', function($f3) {
         $f3->set('SESSION.industry_verticals', $industry_verticals);*/
 
         //Redirect to the summary route
-        $f3->reroute('summary');
+        if(empty ($f3->get('errors'))) {
+            $f3->reroute('summary');
+        }
     }
 
     // Display a view page
