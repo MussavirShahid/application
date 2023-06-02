@@ -169,7 +169,7 @@ $f3->route('GET|POST /mailing-list', function($f3) {
 
 
         //Validate the data
-        if (validSelectionsJobs($software_jobs)){
+       /* if (validSelectionsJobs($software_jobs)){
             $f3->set('SESSION.software_jobs', $software_jobs);
         }
         else{
@@ -180,12 +180,12 @@ $f3->route('GET|POST /mailing-list', function($f3) {
         }
         else{
             $f3->set('errors["industry_verticals"]', 'Invalid industry vertical selected');
-        }
+        }*/
 
         //Store the data in the session array
 
-       /* $f3->set('SESSION.software_jobs', $software_jobs);
-        $f3->set('SESSION.industry_verticals', $industry_verticals);*/
+        $f3->set('SESSION.software_jobs', $software_jobs);
+        $f3->set('SESSION.industry_verticals', $industry_verticals);
 
         //Redirect to the summary route
         if(empty ($f3->get('errors'))) {
@@ -211,3 +211,33 @@ $f3->route('GET /summary', function() {
 
 // Run Fat Free Framework
 $f3->run();
+
+/*
+// Turn on error reporting
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Require the autoload file
+require_once('vendor/autoload.php');
+require_once('model/validation.php');
+
+// Create an F3 (Fat Free Framework) object
+$f3 = Base::instance();
+
+// Create an instance of the Controller class
+$controller = new Controller();
+
+// Define a default route
+$f3->route('GET /', [$controller, 'home']);
+
+session_start();
+
+// Define routes using the controller methods
+$f3->route('GET|POST /personalinfo', [$controller, 'personalInfo']);
+$f3->route('GET|POST /personalinfo', [$controller, 'processPersonalInfo']);
+$f3->route('GET|POST /experience', [$controller, 'experience']);
+$f3->route('GET|POST /mailing-list', [$controller, 'mailingList']);
+$f3->route('GET /summary', [$controller, 'summary']);
+
+// Run Fat Free Framework
+$f3->run();*/

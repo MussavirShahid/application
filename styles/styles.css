@@ -117,3 +117,12 @@ input{
     height: 400px;
     width: 700px;
 }
+.inline-label{
+    font-weight: lighter;
+    font-family: Arial, sans-serif;
+    display: inline-block;
+    text-align: left;
+}
+#mailingListCheckbox{
+    text-align: left;
+}
