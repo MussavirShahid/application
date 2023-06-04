@@ -1,17 +1,6 @@
 <?php
 
-/*
- * Author:Muhammad M Shahid
- * Version: 1.0
- * Description:F3 File
- */
-//turn on error reporting
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-// Require the autoload file
-require_once ('vendor/autoload.php');
-require_once ('model/validation.php');
+require_once 'vendor/autoload.php';
 
 // Create an F3 (Fat Free Framework) object
 $f3 = Base::instance();
@@ -19,7 +8,7 @@ $f3 = Base::instance();
 // Define a default route
 $f3->route('GET /', function() {
 
-// Define View page
+    // Define View page
     $view = new Template();
     echo $view->render('views/home.html');
 
@@ -27,217 +16,25 @@ $f3->route('GET /', function() {
 
 session_start();
 
-//Define a a personal info route
+// Create an instance of the Controller class and pass the $f3 object
+$controller = new Controller($f3);
 
-$f3->route('GET /personalinfo', function() {
-
-// Define View page
-    $view = new Template();
-    echo $view->render('views/personalInfo.html');
-
-});
-
-
-// Create a route "/personal-info" -> personalInfo.html
-$f3->route('GET|POST /personalinfo', function($f3) {
-
-    // If the form has been posted
-    // "Auto-global" arrays:  $_SERVER, $_GET, $_POST
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-        // Get the data
-       //array(5) { ["first_name"]=> string(8) "Muhammad" ["last_name"]=> string(6) "Shahid" ["email"]=> string(24)
-        // "mussavirshahid@gmail.com" ["state"]=> string(10) "WASHINGTON" ["phone"]=> string(10) "4242099636" }
-
-        $firstname = $_POST['first_name'];
-        $lastname = $_POST['last_name'];
-        $email = $_POST['email'];
-        $state = $_POST['state'];
-        $phone = $_POST['phone'];
-
-
-        // Validate the data
-        if (validFirst($firstname)){
-            $f3->set('SESSION.firstname', $firstname);
-        }
-        else{
-            $f3->set('errors["firstname"]', 'Invalid firstname');
-        }
-
-        if (validLast($lastname)){
-            $f3->set('SESSION.lastname', $lastname);
-        }
-        else{
-            $f3->set('errors["lastname"]', 'Invalid lastname');
-        }
-        if (validPhone($phone)){
-            $f3->set('SESSION.phone', $phone);
-        }
-        else{
-            $f3->set('errors["phone"]', 'Invalid Phone Number');
-        }
-        if (validEmail($email)){
-            $f3->set('SESSION.email', $email);
-        }
-        else{
-            $f3->set('errors["email"]', 'Invalid Email');
-        }
-
-        // Store the data in the session array
-        /*$f3->set('SESSION.firstname', $firstname);*/
-        /*$f3->set('SESSION.lastname', $lastname);*/
-        /*$f3->set('SESSION.email', $email);*/
-        $f3->set('SESSION.state', $state);
-       /* $f3->set('SESSION.phone', $phone);*/
-
-        // Redirect to experience route
-        if(empty ($f3->get('errors'))) {
-            $f3->reroute('experience');
-        }
-    }
-
-    // Display a view page
-    $view = new Template();
-    echo $view->render('views/personalInfo.html');
-});
-
-// Create a route "/experience" -> experience.html
-$f3->route('GET|POST /experience', function($f3) {
-
-
-    // If the form has been posted
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-        //Get the data
-        /*var_dump($_POST);
-        echo var_dump();*/
-       /* array(5) { ["bio"]=> string(2) "df" ["github"]=> string(2) "om" ["years"]=> string(1) "2" ["relocate"]=>
-         string(3) "yes" ["submit"]=> string(0) "" }*/
-        $bio = $_POST["bio"];
-        $github = $_POST['github'];
-        $years = $_POST['years'];
-        $relocate = $_POST['relocate'];
-
-
-        //Validate the data
-        if (validGithub($github)){
-            $f3->set('SESSION.github', $github);
-        }
-        else{
-            $f3->set('errors["github"]', 'Invalid URL');
-        }
-        if (validExperience($years)){
-            $f3->set('SESSION.years', $years);
-        }
-        else{
-            $f3->set('errors["years"]', 'Invalid Experience');
-        }
-
-        //Store the data in the session array
-
-        $f3->set('SESSION.bio', $bio);
-        /*$f3->set('SESSION.github', $github);*/
-        /*$f3->set('SESSION.years', $years);*/
-        $f3->set('SESSION.relocate', $relocate);
-
-        //Redirect to the summary route
-        if(empty ($f3->get('errors'))) {
-            $f3->reroute('mailing-list');
-        }
-    }
-
-    // Display a view page
-    $view = new Template();
-    echo $view->render('views/experience.html');
-});
-// Create a route "/mailing-list" -> mailingList.html
-$f3->route('GET|POST /mailing-list', function($f3) {
-
-
-    // If the form has been posted
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-        //Get the data
-        /*var_dump($_POST);
-        echo var_dump();
-        */
-        /*array(3) { ["software_jobs"]=> array(3) { [0]=> string(10) "JavaScript" [1]=> string(3) "PHP" [2]=>
-        string(4) "Java" } ["industry_verticals"]=> array(3) { [0]=> string(4) "Saas" [1]=> string(7) "Ag tech" [2]=>
-        string(13) "Cybersecurity" } ["submit"]=> string(0) "" }*/
-        $software_jobs = implode(", ", $_POST['software_jobs']);
-        $industry_verticals = implode(", ", $_POST['industry_verticals']);
-
-
-        //Validate the data
-       /* if (validSelectionsJobs($software_jobs)){
-            $f3->set('SESSION.software_jobs', $software_jobs);
-        }
-        else{
-            $f3->set('errors["software_jobs"]', 'Invalid Software Jobs selected');
-        }
-        if (validSelectionsVerticals($industry_verticals)){
-            $f3->set('SESSION.industry_verticals', $industry_verticals);
-        }
-        else{
-            $f3->set('errors["industry_verticals"]', 'Invalid industry vertical selected');
-        }*/
-
-        //Store the data in the session array
-
-        $f3->set('SESSION.software_jobs', $software_jobs);
-        $f3->set('SESSION.industry_verticals', $industry_verticals);
-
-        //Redirect to the summary route
-        if(empty ($f3->get('errors'))) {
-            $f3->reroute('summary');
-        }
-    }
-
-    // Display a view page
-    $view = new Template();
-    echo $view->render('views/mailingList.html');
-});
-
-// Create a route "/summary" -> summary.html
-$f3->route('GET /summary', function() {
-
-
-    // Display a view page
-    $view = new Template();
-    echo $view->render('views/summary.html');
-
-    session_destroy();
-});
-
-// Run Fat Free Framework
-$f3->run();
-
-/*
-// Turn on error reporting
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-// Require the autoload file
-require_once('vendor/autoload.php');
-require_once('model/validation.php');
-
-// Create an F3 (Fat Free Framework) object
-$f3 = Base::instance();
-
-// Create an instance of the Controller class
-$controller = new Controller();
-
-// Define a default route
-$f3->route('GET /', [$controller, 'home']);
-
-session_start();
-
-// Define routes using the controller methods
+// Define a route for personal info
 $f3->route('GET|POST /personalinfo', [$controller, 'personalInfo']);
-$f3->route('GET|POST /personalinfo', [$controller, 'processPersonalInfo']);
+
+/*// Define a route for processing personal info
+$f3->route('POST /process-personal-info', [$controller, 'processPersonalInfo']);*/
+
+
+// Define a route for experience
 $f3->route('GET|POST /experience', [$controller, 'experience']);
-$f3->route('GET|POST /mailing-list', [$controller, 'mailingList']);
+
+// Define a route for mailing list
+$f3->route('GET|POST /mailinglist', [$controller, 'mailingList']);
+
+
+// Define a route for summary
 $f3->route('GET /summary', [$controller, 'summary']);
 
-// Run Fat Free Framework
-$f3->run();*/
+// Run the framework
+$f3->run();
