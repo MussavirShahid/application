@@ -1,7 +1,5 @@
 <?php
 
-
-
 class Controller
 {
     private $_f3;
@@ -54,6 +52,14 @@ class Controller
             $this->_f3->set('SESSION.email', $email);
             $this->_f3->set('SESSION.state', $state);
             $this->_f3->set('SESSION.phone', $phone);
+
+            // Check if the mailing list checkbox is selected
+            $optIn = isset($_POST['mailingListCheckbox']);
+
+            /*// Store the opt-in status in a session variable
+            $this->_f3->set($_SESSION['optIn'] = $optIn);*/
+
+            $_SESSION['optIn'] = $optIn;
 
             //create new applicant
             if(empty($this->_f3->get("errors"))) {
@@ -118,16 +124,15 @@ class Controller
             $this->_f3->set('SESSION.years', $years);
             $this->_f3->set('SESSION.relocate', $relocate);
 
-            // Check if the mailing list checkbox is selected
-            $optIn = isset($_POST['mailingListCheckbox']);
+            /*// Retrieve the opt-in status from the session variable
+            $optIn = $this->_f3->get($_SESSION['optIn']);*/
+            $optIn = $_SESSION['optIn'];
 
-            // Store the opt-in status in a session variable
-            $this->_f3->set('optIn', $optIn);
 
             // Redirect to the appropriate route
             if (empty($this->_f3->get('errors'))) {
                 if ($optIn) {
-                    $this->_f3->reroute('mailing-list');
+                    $this->_f3->reroute('mailingList');
                 } else {
                     $this->_f3->reroute('summary');
                 }
@@ -177,8 +182,10 @@ class Controller
 
     public function summary()
     {
-        // Retrieve the opt-in status from the session variable
-        $optIn = $this->_f3->get('optIn');
+        /*// Retrieve the opt-in status from the session variable
+        $optIn = $this->_f3->get($_SESSION['optIn']);*/
+
+        $optIn = $_SESSION['optIn'];
 
         // Display a view page
         $view = new Template();
